@@ -1,0 +1,41 @@
+﻿CREATE OR REPLACE TABLE bv_invoices I18N us_pst (
+        invoice_id:int, 
+        date_invoice:text, 
+        order_id:int, 
+        date_placed:text, 
+        date_delivered:text, 
+        date_closed:text, 
+        first_name:text, 
+        last_name:text, 
+        email:text, 
+        address:text, 
+        country:text, 
+        postal_code:text, 
+        phone:text, 
+        amount:int
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_invoices(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD invoice_id (any) OPT ANY
+             ADD date_invoice (any) OPT ANY
+             ADD order_id (any) OPT ANY
+             ADD date_placed (any) OPT ANY
+             ADD date_delivered (any) OPT ANY
+             ADD date_closed (any) OPT ANY
+             ADD first_name (any) OPT ANY
+             ADD last_name (any) OPT ANY
+             ADD email (any) OPT ANY
+             ADD address (any) OPT ANY
+             ADD country (any) OPT ANY
+             ADD postal_code (any) OPT ANY
+             ADD phone (any) OPT ANY
+             ADD amount (any) OPT ANY
+        )
+        OUTPUTLIST (address, amount, country, date_closed, date_delivered, date_invoice, date_placed, email, first_name, invoice_id, last_name, order_id, phone, postal_code
+        )
+        WRAPPER (custom ds_invoices)
+    );
+

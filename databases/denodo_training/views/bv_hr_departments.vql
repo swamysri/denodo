@@ -1,0 +1,35 @@
+﻿CREATE OR REPLACE WRAPPER JDBC departments
+    DATASOURCENAME=ds_human_resources
+    RELATIONNAME='DEPARTMENTS' 
+    OUTPUTSCHEMA (
+        department_id = 'DEPARTMENT_ID' :'java.lang.Double' (OPT) (sourcetyperadix='10', sourcetypename='NUMBER(4)', sourcetypeid='6', sourcetypedecimals='10', sourcetypesize='2000000000')  NOT NULL NOT SORTABLE,
+        department_name = 'DEPARTMENT_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR2(30)', sourcetypeid='12', sourcetypedecimals='10', sourcetypesize='2000000000')  NOT NULL NOT SORTABLE,
+        location_id = 'LOCATION_ID' :'java.lang.Double' (OPT) (sourcetyperadix='10', sourcetypename='NUMBER(4)', sourcetypeid='6', sourcetypedecimals='10', sourcetypesize='2000000000')  NOT SORTABLE,
+        manager_id = 'MANAGER_ID' :'java.lang.Double' (OPT) (sourcetyperadix='10', sourcetypename='NUMBER(6)', sourcetypeid='6', sourcetypedecimals='10', sourcetypesize='2000000000')  NOT SORTABLE
+    )
+    CONSTRAINT 'dept_id_pk' PRIMARY KEY ( 'department_id' )
+    FOREIGN KEY ( 'LOCATION_ID' , 'MANAGER_ID' ) 
+    REFERENCES 'LOCATIONS'( 'LOCATION_ID' , 'EMPLOYEE_ID' )  ON UPDATE NO ACTION  ON DELETE NO ACTION INITIALLY DEFERRED 
+    INDEX 'sqlite_autoindex_DEPARTMENTS_1' OTHER UNIQUE ( 'DEPARTMENT_ID' );
+
+CREATE OR REPLACE TABLE bv_hr_departments I18N us_pst (
+        department_id:double (sourcetyperadix = '10', sourcetypedecimals = '10', sourcetypesize = '2000000000', sourcetypeid = '6'), 
+        department_name:text (sourcetyperadix = '10', sourcetypedecimals = '10', sourcetypesize = '2000000000', sourcetypeid = '12'), 
+        location_id:double (sourcetyperadix = '10', sourcetypedecimals = '10', sourcetypesize = '2000000000', sourcetypeid = '6'), 
+        manager_id:double (sourcetyperadix = '10', sourcetypedecimals = '10', sourcetypesize = '2000000000', sourcetypeid = '6')
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD departments(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD department_id (any) OPT ANY
+             ADD department_name (any) OPT ANY
+             ADD location_id (any) OPT ANY
+             ADD manager_id (any) OPT ANY
+        )
+        OUTPUTLIST (department_id, department_name, location_id, manager_id
+        )
+        WRAPPER (jdbc departments)
+    );
+

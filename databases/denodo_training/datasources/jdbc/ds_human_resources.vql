@@ -1,0 +1,27 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JDBC ds_human_resources
+    DRIVERCLASSNAME = 'org.sqlite.JDBC'
+    DATABASEURI = '${databases.denodo_training.datasources.jdbc.ds_human_resources.DATABASEURI}'
+    USERNAME = '${databases.denodo_training.datasources.jdbc.ds_human_resources.USERNAME}'
+    USERPASSWORD = ''
+    CLASSPATH = 'C:\Users\rsundararajan\Desktop\Training\sqlite-jdbc-3.19.3.jar'
+    DATABASENAME = 'Generic'
+    DATABASEVERSION = ''
+    FETCHSIZE = 1000
+    BATCHINSERTSIZE = 200
+    VALIDATIONQUERY = ''
+    INITIALSIZE = 4
+    MAXIDLE = 0
+    MINIDLE = 0
+    MAXACTIVE = 20
+    EXHAUSTEDACTION = 0
+    TESTONBORROW = true
+    TESTONRETURN = false
+    TESTWHILEIDLE = false
+    TIMEBETWEENEVICTION = 0
+    NUMTESTPEREVICTION = 0
+    MINEVICTABLETIME = 0
+    POOLPREPAREDSTATEMENTS = false
+    MAXSLEEPINGPS = 0
+    INITIALCAPACITYPS = 0;
+

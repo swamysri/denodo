@@ -1,0 +1,9 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE LDAP ds_active_directory
+    URI='${databases.denodo_training.datasources.ldap.ds_active_directory.URI}'
+    USERNAME='${databases.denodo_training.datasources.ldap.ds_active_directory.USERNAME}'
+    USERPASSWORD='${databases.denodo_training.datasources.ldap.ds_active_directory.USERPASSWORD}' ${databases.denodo_training.datasources.ldap.ds_active_directory.USERPASSWORD.ENCRYPTED}
+    USEPAGING=FALSE
+    MAXPAGESIZE=1000
+    POOL_ENABLED = TRUE;
+
